@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Separator } from "@/components/ui/separator"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { Menu, Globe } from "lucide-react"
 import { OdysseyLogo } from "./logo"
 
@@ -49,6 +50,7 @@ export function Navbar({
           </nav>
         </div>
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="text-white hover:bg-white/10">
@@ -92,6 +94,10 @@ export function Navbar({
                   )
                 })}
                 <Separator className="my-4 bg-white/10" />
+                <div className="flex items-center gap-2 px-3 py-2">
+                  <span className="text-sm font-medium text-white/80">Theme:</span>
+                  <ThemeToggle />
+                </div>
                 <Button
                   onClick={onOpenCalendly}
                   className="w-full bg-[#2563EB] hover:bg-[#1d4fd7] text-white shadow-md shadow-[#2563EB]/30"
