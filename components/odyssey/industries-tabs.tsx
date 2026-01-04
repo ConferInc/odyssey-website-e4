@@ -75,6 +75,48 @@ function LogoMarquee() {
   )
 }
 
+function IndustryPanel({
+  title,
+  points,
+  metrics,
+}: {
+  title: string
+  points: string[]
+  metrics: {
+    cvrLift: number
+    ahtReduction: number
+    npsIncrease: number
+    labels: [string, string, string]
+  }
+}) {
+  return (
+    <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+      <Card className="rounded-2xl border-white/10 bg-white/5 p-4 text-white backdrop-blur">
+        <div className="mb-3 text-sm text-white/70">{"Before → After"}</div>
+        <BeforeAfter beforeSrc="/before-dashboard-static.png" afterSrc="/personalized-dashboard-state.png" />
+      </Card>
+      <div className="grid gap-4">
+        <motion.div
+          className="rounded-2xl border border-white/10 bg-white/5 p-6 text-white backdrop-blur"
+          whileHover={{ y: -3 }}
+        >
+          <div className="text-xl font-semibold">{title}</div>
+          <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-white/80">
+            {points.map((p) => (
+              <li key={p}>{p}</li>
+            ))}
+          </ul>
+        </motion.div>
+        <div className="grid grid-cols-3 gap-3">
+          <Stat label={metrics.labels[0]} value={metrics.cvrLift} />
+          <Stat label={metrics.labels[1]} value={metrics.ahtReduction} />
+          <Stat label={metrics.labels[2]} value={metrics.npsIncrease} />
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export function IndustriesTabs() {
   return (
     <section className="bg-[#0F172A] py-20">
@@ -108,26 +150,58 @@ export function IndustriesTabs() {
 
           <TabsContent value="retail">
             <IndustryPanel
-              title="AI‑powered personalization"
+              title="AI-powered personalization"
               points={["Dynamic offers", "Real-time recommendations", "Intent detection"]}
+              metrics={{
+                cvrLift: 23,
+                ahtReduction: 54,
+                npsIncrease: 18,
+                labels: ["Lift in Conversion Rate", "Average Handle Time reduction", "Net Promoter Score increase"],
+              }}
             />
           </TabsContent>
           <TabsContent value="healthcare">
             <IndustryPanel
               title="Predictive analytics"
               points={["Risk stratification", "Care pathway optimization", "Resource forecasting"]}
+              metrics={{
+                cvrLift: 17,
+                ahtReduction: 42,
+                npsIncrease: 21,
+                labels: ["Readmission rate reduction", "Clinician time saved", "Resource utilization improvement"],
+              }}
             />
           </TabsContent>
           <TabsContent value="defense">
             <IndustryPanel
               title="Secure AI solutions"
               points={["On-prem deployment", "Air-gapped workflows", "Granular RBAC & audit"]}
+              metrics={{
+                cvrLift: 11,
+                ahtReduction: 38,
+                npsIncrease: 14,
+                labels: [
+                  "Incident response time reduction",
+                  "Operational system uptime",
+                  "Audit & compliance coverage",
+                ],
+              }}
             />
           </TabsContent>
           <TabsContent value="financial">
             <IndustryPanel
               title="Decisioning & automation"
               points={["KYC/KYB automation", "Fraud detection", "Loan underwriting"]}
+              metrics={{
+                cvrLift: 19,
+                ahtReduction: 47,
+                npsIncrease: 26,
+                labels: [
+                  "Decision throughput increase",
+                  "Fraud detection efficiency",
+                  "Compliance automation coverage",
+                ],
+              }}
             />
           </TabsContent>
         </Tabs>
@@ -137,34 +211,5 @@ export function IndustriesTabs() {
         </div>
       </div>
     </section>
-  )
-}
-
-function IndustryPanel({ title, points }: { title: string; points: string[] }) {
-  return (
-    <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-      <Card className="rounded-2xl border-white/10 bg-white/5 p-4 text-white backdrop-blur">
-        <div className="mb-3 text-sm text-white/70">{"Before → After"}</div>
-        <BeforeAfter beforeSrc="/before-dashboard-static.png" afterSrc="/personalized-dashboard-state.png" />
-      </Card>
-      <div className="grid gap-4">
-        <motion.div
-          className="rounded-2xl border border-white/10 bg-white/5 p-6 text-white backdrop-blur"
-          whileHover={{ y: -3 }}
-        >
-          <div className="text-xl font-semibold">{title}</div>
-          <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-white/80">
-            {points.map((p) => (
-              <li key={p}>{p}</li>
-            ))}
-          </ul>
-        </motion.div>
-        <div className="grid grid-cols-3 gap-3">
-          <Stat label="Lift in CVR" value={23} />
-          <Stat label="AHT reduction (s)" value={54} />
-          <Stat label="NPS increase" value={18} />
-        </div>
-      </div>
-    </div>
   )
 }
