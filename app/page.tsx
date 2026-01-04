@@ -2,7 +2,6 @@ import { Hero } from "@/components/odyssey/hero"
 import { Navbar } from "@/components/odyssey/navbar"
 import { SolutionsGrid } from "@/components/odyssey/solutions-grid"
 import { IndustriesTabs } from "@/components/odyssey/industries-tabs"
-import { ChartsDemo } from "@/components/odyssey/charts-demo"
 import { Footer } from "@/components/odyssey/footer"
 
 export default function Page() {
@@ -14,7 +13,6 @@ export default function Page() {
       <Hero />
       <SolutionsGrid />
       <IndustriesTabs />
-      <ChartsDemo />
       <Footer />
     </main>
   )
