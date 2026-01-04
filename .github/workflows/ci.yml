@@ -14,26 +14,32 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Use Node version compatible with modern Next.js
       - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.10.0"
+
+      # ✅ Properly install pnpm
+      - name: Enable pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.12.3 --activate
+          pnpm --version
+
+      # ✅ Cache pnpm AFTER pnpm exists
+      - name: Setup pnpm cache
         uses: actions/setup-node@v4
         with:
           node-version: "20.10.0"
           cache: "pnpm"
 
-      - name: Enable pnpm
-        run: corepack enable
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Lint only if script exists
-      - name: Run ESLint
+      - name: Run ESLint (if present)
         run: pnpm lint --if-present
 
-      # Build only — no runtime execution
       - name: Build Next.js app
         env:
-          # Dummy envs if referenced during build
           NEXT_PUBLIC_BASE_URL: http://localhost
         run: pnpm build
