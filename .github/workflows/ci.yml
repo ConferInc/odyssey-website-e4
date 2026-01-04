@@ -19,14 +19,14 @@ jobs:
         with:
           node-version: "20.10.0"
 
-      # ✅ Properly install pnpm
+      # Install pnpm correctly
       - name: Enable pnpm
         run: |
           corepack enable
           corepack prepare pnpm@9.12.3 --activate
           pnpm --version
 
-      # ✅ Cache pnpm AFTER pnpm exists
+      # Cache pnpm store
       - name: Setup pnpm cache
         uses: actions/setup-node@v4
         with:
@@ -36,8 +36,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # ✅ Correct pnpm-safe lint check
       - name: Run ESLint (if present)
-        run: pnpm lint --if-present
+        run: |
+          if pnpm run | grep -q "lint"; then
+            pnpm lint
+          else
+            echo "No lint script found, skipping ESLint"
+          fi
 
       - name: Build Next.js app
         env:
