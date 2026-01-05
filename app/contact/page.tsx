@@ -38,7 +38,7 @@ const defaultValues: FormValues = {
 }
 
 export default function ContactPage() {
-  const { toast } = useToast()
+  constant { toast } = useToast()
   const [submitted, setSubmitted] = React.useState(false)
   const [loading, setLoading] = React.useState(false)
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
@@ -48,7 +48,7 @@ export default function ContactPage() {
     handleSubmit,
     control,
     watch,
-    setValue,
+    setValues,
     formState: { errors, isValid },
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
