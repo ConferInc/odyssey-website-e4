@@ -6,9 +6,10 @@ import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { Navbar } from "@/components/odyssey/navbar"
 import { Footer } from "@/components/odyssey/footer"
+import { IndustriesTabs } from "@/components/odyssey/industries-tabs"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs, TabsContent } from "@/components/ui/tabs"
 import { Banknote, Shield, Stethoscope, ShoppingCart, ArrowLeft, ArrowRight } from "lucide-react"
 
 type Spotlight = {
@@ -171,66 +172,9 @@ export default function IndustriesPage() {
       </section>
 
       {/* Industry Tabs */}
-      <section className="mx-auto max-w-7xl px-4 pb-16">
-        <h2 className="text-3xl font-bold md:text-4xl">{"Industries"}</h2>
-        <p className="mt-2 max-w-2xl text-white/70">
-          {"Focus on outcomes—use cases and accelerators built for your sector."}
-        </p>
-
-        <Tabs value={tab} onValueChange={setTab} className="mt-6">
-          <TabsList className="bg-white/5">
-            <TabsTrigger value="financial" className="data-[state=active]:bg-[#2563EB]">
-              <Banknote className="mr-2 h-4 w-4" />
-              {"Financial Services"}
-            </TabsTrigger>
-            <TabsTrigger value="healthcare" className="data-[state=active]:bg-[#2563EB]">
-              <Stethoscope className="mr-2 h-4 w-4" />
-              {"Healthcare"}
-            </TabsTrigger>
-            <TabsTrigger value="retail" className="data-[state=active]:bg-[#2563EB]">
-              <ShoppingCart className="mr-2 h-4 w-4" />
-              {"Retail"}
-            </TabsTrigger>
-            <TabsTrigger value="defense" className="data-[state=active]:bg-[#2563EB]">
-              <Shield className="mr-2 h-4 w-4" />
-              {"Defense & Security"}
-            </TabsTrigger>
-          </TabsList>
-
-          <TabBody value="financial">
-            <IndustryShowcase
-              title="Financial Services"
-              bullets={["Fraud detection", "Risk assessment", "Algorithmic trading"]}
-              img="/financial-ai-dashboard.png"
-              alt="Financial services AI dashboard"
-            />
-          </TabBody>
-          <TabBody value="healthcare">
-            <IndustryShowcase
-              title="Healthcare"
-              bullets={["Predictive diagnostics", "Patient data analysis", "Drug discovery"]}
-              img="/healthcare-ai-diagnostics.png"
-              alt="Healthcare AI predictive diagnostics"
-            />
-          </TabBody>
-          <TabBody value="retail">
-            <IndustryShowcase
-              title="Retail"
-              bullets={["Personalized recommendations", "Inventory optimization", "Customer sentiment analysis"]}
-              img="/retail-ai-personalization-dashboard.png"
-              alt="Retail AI personalization dashboard"
-            />
-          </TabBody>
-          <TabBody value="defense">
-            <IndustryShowcase
-              title="Defense & Security"
-              bullets={["Threat detection", "Secure communications", "Surveillance analysis"]}
-              img="/defense-security-ai-surveillance.png"
-              alt="Defense and security AI surveillance analysis"
-            />
-          </TabBody>
-        </Tabs>
-      </section>
+      <Tabs value={tab} onValueChange={setTab}>
+        <IndustriesTabs />
+      </Tabs>
 
       {/* Industry Spotlight Carousel */}
       <section
