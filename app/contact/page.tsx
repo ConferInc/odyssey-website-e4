@@ -256,8 +256,8 @@ export default function ContactPage() {
                   <Mail className="h-5 w-5 text-[#2563EB]" />
                   <div>
                     <div className="text-sm text-[#E2E8F0]">Email</div>
-                    <a href="mailto:solutions@odysseyts.com" className="text-white hover:text-[#2563EB]">
-                      solutions@odysseyts.com
+                    <a href="mailto:info@odysseyts.com" className="text-white hover:text-[#2563EB]">
+                      info@odysseyts.com
                     </a>
                   </div>
                 </div>
